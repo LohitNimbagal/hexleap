@@ -65,7 +65,7 @@ const CollectionCard = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "h-[625px] w-[257px] p-1 py-5 flex flex-col items-center gap-5 bg-white shadow-lg",
+      "h-[625px] w-[257px] flex flex-col items-center gap-3 justify-start bg-[#FFFFFF] border-[#A9ACB2] shadow-lg ",
       className
     )}
     {...props}
@@ -74,12 +74,12 @@ const CollectionCard = React.forwardRef<
 CollectionCard.displayName = "CollectionCard"
 
 const CardImage = React.forwardRef<
-HTMLDivElement,
+  HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("", className)}
+    className={cn("flex flex-col items-center", className)}
     {...props}
   />
 ))
@@ -132,7 +132,7 @@ CardContent.displayName = "CardContent"
 // ))
 // CardFooter.displayName = "CardFooter"
 
-export { Card, CardImage, CardTitle, CardDescription, CardContent }
+export { Card, CardImage, CardTitle, CardDescription, CardContent, CollectionCard }
 
 
 // export { SportsCard, SportsCardTitle, cardVariant }

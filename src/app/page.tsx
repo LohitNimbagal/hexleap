@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/Button";
-import { Card, CardImage, CardTitle, CardDescription, CardContent } from "@/components/ui/Card";
+import { Card, CardImage, CardTitle, CardDescription, CardContent, CollectionCard } from "@/components/ui/Card";
 import Image from 'next/image'
 
 export default function Home() {
@@ -130,17 +130,17 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-[1249px] min-h-[673px] p-1  text-center">
+      <section className="w-[1249px] min-h-[673px] p-1 flex flex-col items-center text-center bg-gradient-to-b from-[#F9F8FF] to-[#F3F9FF]">
         <div className="w-full flex flex-col items-center">
           <h2 className="font-bold text-[50px]">Collection Spotlight</h2>
 
           <h3 className="text-[14px] w-[917px] px-2">Discover extraordinary moments with our Spotlight Collection metatickets—exclusive access to premium events for an unforgettable experience. Grab yours today!</h3>
         </div>
 
-        <div className="flex my-10 justify-evenly">
+        <div className="h-[625px] w-[850px] flex my-10 justify-evenly">
           {CollectionCardInfo.map((card, index) => (
-            <Card key={card.title + index}>
-              <CardImage>
+            <CollectionCard key={card.title + index} className="border-[#A9ACB2] shadow-2xl">
+              <CardImage className="">
                 <Image
                   priority
                   src={card.imageSrc}
@@ -148,21 +148,32 @@ export default function Home() {
                   height={401.25}
                   alt="Picture of the author"
                 />
+
+                <div className="w-[180px] border-[#D9D9D9] border-dashed border-b relative flex">
+                  <div className="absolute rounded-full w-5 h-5 bg-[#D9D9D9] -mt-2 -left-12 shadow-2xl"></div>
+                  <div className="absolute rounded-full w-5 h-5 bg-[#D9D9D9] -mt-2 -right-12 shadow-2xl"></div>
+                </div>
               </CardImage>
-              <CardTitle>
+
+
+              <CardTitle className="text-center text-lg">
                 {card.title}
               </CardTitle>
-              <CardContent className="flex items-center justify-between px-5">
+
+              <CardContent className="flex flex-col items-center justify-between px-5">
                 <>
-                  <CardDescription className="">
+                  <CardDescription className="my-2">
                     {card.date}
                   </CardDescription>
-                  <CardDescription className="">
+                  <CardDescription>
                     {card.location}
                   </CardDescription>
                 </>
               </CardContent>
-            </Card>
+
+              <Button className="bg-black w-full mt-8">Take Flight Collection</Button>
+
+            </CollectionCard>
           ))}
         </div>
       </section>
