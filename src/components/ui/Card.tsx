@@ -50,13 +50,28 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "h-[511px] w-[238px] p-1 py-5 flex flex-col items-center gap-5",
+      "h-[511px] w-[238px] p-1 py-5 flex flex-col items-center gap-5 bg-white shadow-lg",
       className
     )}
     {...props}
   />
 ))
 Card.displayName = "Card"
+
+const CollectionCard = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "h-[625px] w-[257px] p-1 py-5 flex flex-col items-center gap-5 bg-white shadow-lg",
+      className
+    )}
+    {...props}
+  />
+))
+CollectionCard.displayName = "CollectionCard"
 
 const CardImage = React.forwardRef<
 HTMLDivElement,
