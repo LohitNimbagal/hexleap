@@ -1,138 +1,44 @@
-// import React from 'react'
-// import { FC } from 'react'
-// import { VariantProps, cva } from 'class-variance-authority'
-// import { cn } from '@/lib/utils'
-
-
-// const cardVariant = cva(
-//     "h-[511px] w-[238px] p-1",
-//     {
-//         variants: {
-//             variant: {
-//                 default: "bg-red-700 text-left",
-//                 add: "bg-yellow-700 text-center"
-//             },
-//         },
-//         defaultVariants: {
-//             variant: "default"
-//         }
-//     }
-// )
-
-// interface SportsCardProps extends VariantProps<typeof cardVariant> {
-//     children: JSX.Element | string
-// }
-
-// const SportsCard: FC<SportsCardProps> = ({ variant, children, ...props }) => {
-//     return (
-//         <div className={cn(cardVariant({ variant }))} {...props}>
-//             {children}
-//         </div>
-//     );
-// };
-
-// const SportsCardTitle: FC<SportsCardProps> = ({ variant, children, ...props }) => {
-//     return (
-//         <h2 className={cn(cardVariant({ variant }))} {...props}>
-//             {children}
-//         </h2>
-//     );
-// };
-
-import * as React from "react"
-
+import React from "react";
 import { cn } from "@/lib/utils"
+import { cva, type VariantProps } from "class-variance-authority";
 
-const Card = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "h-[511px] w-[238px] p-1 py-5 flex flex-col items-center gap-5 bg-white shadow-lg",
-      className
-    )}
-    {...props}
-  />
-))
-Card.displayName = "Card"
+const card = cva("shadow-2xl bg-[#FFFFFF] relative", {
+    variants: {
+        intent: {
+            event: [
+                "bg-[#FFFFFF]",
+                "w-[238.53px]",
+                "h-[511px]",
+                "p-[10px]"
+            ],
+            collection: [
+                "w-[257px]",
+                "h-[625px]",
+                // "border-[#A9ACB2]",
+                "border-[0.96px]",
+                "flex flex-col items-center"
+            ],
+        }
+    },
+    compoundVariants: [
+        { intent: "event", className: "event" },
+        { intent: "collection", className: "collection" }
+    ],
+    defaultVariants: {
+        intent: "event",
+    },
+});
 
-const CollectionCard = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "h-[625px] w-[257px] flex flex-col items-center gap-3 justify-start bg-[#FFFFFF] border-[#A9ACB2] shadow-lg ",
-      className
-    )}
-    {...props}
-  />
-))
-CollectionCard.displayName = "CollectionCard"
+export interface CardProps
+    extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof card> { }
 
-const CardImage = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("flex flex-col items-center", className)}
-    {...props}
-  />
-))
-CardImage.displayName = "CardImage"
+export const Card: React.FC<CardProps> = ({
+    className,
+    intent,
+    children,
+    ...props
+}) => <div className={card({ intent, className, })} {...props}>
+        {children}
+    </div >
 
-const CardTitle = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-  <h3
-    ref={ref}
-    className={cn(
-      "text-[14px] w-full font-semibold leading-none tracking-tight text-start px-2",
-      className
-    )}
-    {...props}
-  />
-))
-CardTitle.displayName = "CardTitle"
-
-const CardDescription = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => (
-  <p
-    ref={ref}
-    className={cn("text-sm text-muted-foreground", className)}
-    {...props}
-  />
-))
-CardDescription.displayName = "CardDescription"
-
-const CardContent = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn(" w-[218.4px] h-[54px] bg-[#F7F7F8]", className)} {...props} />
-))
-CardContent.displayName = "CardContent"
-
-// const CardFooter = React.forwardRef<
-//   HTMLDivElement,
-//   React.HTMLAttributes<HTMLDivElement>
-// >(({ className, ...props }, ref) => (
-//   <div
-//     ref={ref}
-//     className={cn("flex items-center p-6 pt-0", className)}
-//     {...props}
-//   />
-// ))
-// CardFooter.displayName = "CardFooter"
-
-export { Card, CardImage, CardTitle, CardDescription, CardContent, CollectionCard }
-
-
-// export { SportsCard, SportsCardTitle, cardVariant }

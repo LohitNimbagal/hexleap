@@ -1,17 +1,20 @@
 import { Button } from "@/components/ui/Button";
-import { Card, CardImage, CardTitle, CardDescription, CardContent, CollectionCard } from "@/components/ui/Card";
+import { Card } from "@/components/ui/Card";
 import Image from 'next/image'
 
 export default function Home() {
 
   const CardInfo: {
     imageSrc: string;
-    title: string;
+    title?: string;
     description?: {
       events: string;
       sport: string;
     };
-    info?: string;
+    info?: {
+      title: string;
+      description: string;
+    };
   }[] = [
       {
         imageSrc: "/imageOne.png",
@@ -47,8 +50,10 @@ export default function Home() {
       },
       {
         imageSrc: "/imageAd.png",
-        title: "Advertisement title",
-        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        info: {
+          title: "Advertisement title",
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        }
         // description: {
         //   events: "28",
         //   sport: "BaseBall"
@@ -90,43 +95,46 @@ export default function Home() {
 
         <div className="flex my-10 justify-evenly">
           {CardInfo.map((card, index) => (
-            <Card key={card.title + index} className={card.info ? 'justify-start' : ""}>
-              <CardImage>
-                <Image
-                  priority
-                  src={card.imageSrc}
-                  width={218}
-                  height={385}
-                  alt="Picture of the author"
-                />
-              </CardImage>
-              <CardTitle>
+            <Card className=' space-y-[10px]' key={"card" + index}>
+              <Image
+                priority
+                src={card.imageSrc}
+                width={218}
+                height={385}
+                alt="Picture of the author"
+              />
+
+              <h3 className='text-[17px] text-black font-medium'>
                 {card.title}
-              </CardTitle>
-              {card.description &&
-                <CardContent className="flex items-center justify-between px-5">
-                  <>
-                    <CardDescription className="">
-                      Total Events <br /> <span className="font-bold">{card.description?.events} Events</span>
-                    </CardDescription>
-                    <CardDescription className="">
-                      Sport <br /> <span className="font-bold">{card.description?.sport}</span>
-                    </CardDescription>
-                  </>
-                </CardContent>
-              }
-              {card.info &&
-                <>
-                  <CardDescription className="px-2">
-                    {card.info}
-                  </CardDescription>
-                </>
+              </h3>
+
+              {card.description ?
+
+                <div className="w-[218.4px] h-[54px] flex items-start gap-[40px] p-[10px] bg-[#F7F7F8]">
+                  <p className="text-[12px] text-[#525965]">
+                    Total Events <br /> <span className="font-bold text-black text-[14px]">{card.description?.events} Events</span>
+                  </p>
+                  <p className="text-[12px] text-[#525965]">
+                    Sports <br /> <span className="font-bold text-black text-[14px]">{card.description?.sport}</span>
+                  </p>
+                </div>
+
+                :
+
+                <div className="px-[15px] space-y-3">
+                  <h3 className="text-[#222D3A] text-[20px] font-semibold">{card.info?.title}</h3>
+                  <p className="font-normal text-[#525965] text-[13px] text-start">
+                    {card.info?.description}
+                  </p>
+                </div>
+
+
               }
             </Card>
           ))}
         </div>
         <div className="w-full flex justify-center">
-          <Button>See More</Button>
+          <Button intent="primary" size="small">See More</Button>
         </div>
       </section>
 
@@ -137,43 +145,38 @@ export default function Home() {
           <h3 className="text-[14px] w-[917px] px-2">Discover extraordinary moments with our Spotlight Collection metatickets—exclusive access to premium events for an unforgettable experience. Grab yours today!</h3>
         </div>
 
-        <div className="h-[625px] w-[850px] flex my-10 justify-evenly">
+        <div className="h-[625px] w-[850px] flex my-10 justify-between">
           {CollectionCardInfo.map((card, index) => (
-            <CollectionCard key={card.title + index} className="border-[#A9ACB2] shadow-2xl">
-              <CardImage className="">
-                <Image
-                  priority
-                  src={card.imageSrc}
-                  width={226.1}
-                  height={401.25}
-                  alt="Picture of the author"
-                />
+            <Card intent="collection" className='divide-y-2 divide-dashed divide-[#A9ACB2]' key={card.title + index}>
+              <Image
+                width={250}
+                height={400}
+                src={card.imageSrc}
+                alt="Picture of the author"
+              />
 
-                <div className="w-[180px] border-[#D9D9D9] border-dashed border-b relative flex">
-                  <div className="absolute rounded-full w-5 h-5 bg-[#D9D9D9] -mt-2 -left-12 shadow-2xl"></div>
-                  <div className="absolute rounded-full w-5 h-5 bg-[#D9D9D9] -mt-2 -right-12 shadow-2xl"></div>
-                </div>
-              </CardImage>
+              <div className='space-y-[20px] flex flex-col items-center'>
+                <div className="w-[213px] h-[100.66px] flex flex-col items-center justify-between font-normal text-[14px] space-y-[5px] overflow-hidden text-center mt-[20px]">
+
+                  <div className="bg-gradient-to-l from-[#E1E6EB] from-5% to-[#EBEFF4] z-10 rounded-full w-[20px] h-[20px] absolute bottom-[195px] left-[-10px]" />
+                  <div className="bg-gradient-to-r from-[#E1E6EB] from-5% to-[#EBEFF4] z-10 rounded-full w-[20px] h-[20px] absolute bottom-[195px] right-[-10px]" />
 
 
-              <CardTitle className="text-center text-lg">
-                {card.title}
-              </CardTitle>
-
-              <CardContent className="flex flex-col items-center justify-between px-5">
-                <>
-                  <CardDescription className="my-2">
+                  <h3 className="text-center text-[17px] font-medium text-black">
+                    {card.title}
+                  </h3>
+                  <p className="">
                     {card.date}
-                  </CardDescription>
-                  <CardDescription>
+                  </p>
+                  <p className='text-[#525965]'>
                     {card.location}
-                  </CardDescription>
-                </>
-              </CardContent>
+                  </p>
 
-              <Button className="bg-black w-full mt-8">Take Flight Collection</Button>
+                </div>
 
-            </CollectionCard>
+                <Button intent={"secondary"} size={"large"} className='text-[12px]'>Take Flight Collection</Button>
+              </div>
+            </Card>
           ))}
         </div>
       </section>
