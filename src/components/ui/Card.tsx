@@ -2,7 +2,7 @@ import React from "react";
 import { cn } from "@/lib/utils"
 import { cva, type VariantProps } from "class-variance-authority";
 
-const card = cva("shadow bg-[#FFFFFF] dark:bg-[#3B3E47] relative", {
+const card = cva("shadow-2xl bg-[#FFFFFF] dark:bg-[#3B3E47] relative", {
     // ring-1 ring-inset ring-offset-[10px] ring-[#006555] 
     variants: {
         intent: {
@@ -48,8 +48,8 @@ export const Card: React.FC<CardProps> = ({
 }) => <div className={card({ intent, className })} {...props}>
         {intent === 'collection' &&
             <>
-                <div className="bg-gradient-to-l from-[#E1E6EB] from-5% to-[#EBEFF4] dark:from-[#1D1D28] dark:to-[#1E1E2B] z-10 rounded-full w-[20px] h-[20px] absolute bottom-[258px] lg:bottom-[195px] left-[-10px]" />
-                <div className="bg-gradient-to-r from-[#E1E6EB] from-5% to-[#EBEFF4] dark:from-[#1D1D28] dark:to-[#1E1E2B] z-10 rounded-full w-[20px] h-[20px] absolute bottom-[258px] lg:bottom-[195px] right-[-10px]" />
+                <div className="bg-gradient-to-l from-[#E1E6EB] from-5% to-[#EAECF3] dark:from-[#1D1D28] dark:to-[#1E1E2B] z-10 rounded-full w-[20px] h-[20px] absolute bottom-[258px] lg:bottom-[195px] left-[-10px]" />
+                <div className="bg-gradient-to-r from-[#E1E6EB] from-5% to-[#EAECF3] dark:from-[#1D1D28] dark:to-[#1E1E2B] z-10 rounded-full w-[20px] h-[20px] absolute bottom-[258px] lg:bottom-[195px] right-[-10px]" />
             </>
         }
         {children}
