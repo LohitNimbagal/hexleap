@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
+import { Card, CardTitle, CardContent, CardText, CardWrapper } from "@/components/ui/Card";
 import Image from 'next/image'
 
 const CardInfo: {
@@ -114,13 +114,13 @@ export default function Home() {
 
       <section className="w-full min-h-screen flex items-center justify-center">
 
-        <div className="w-full h-screen lg:w-[1249px] lg:min-h-[673px] p-1 flex flex-col justify-between ">
+        <div className="w-full h-screen lg:w-[1249px] lg:h-[673px] p-1 flex flex-col justify-between ">
 
           <h2 className="w-fit font-bold text-[24px] border-b-[#738FFF] border-b-[2px]">Sports</h2>
 
-          <div className="flex items-center justify-between overflow-scroll scrollbar-hide gap-5 lg:gap-0 px-5 lg:px-0">
+          <CardWrapper className="justify-between gap-5">
             {CardInfo.map((card, index) => (
-              <Card className='space-y-[10px]' key={"card" + index} intent={card.info && 'adv' }>
+              <Card className='space-y-[10px]' key={"card" + index} intent={card.info && 'adv'}>
                 <Image
                   priority
                   src={card.imageSrc}
@@ -130,35 +130,34 @@ export default function Home() {
                 />
 
                 {card.title &&
-                  <h3 className='text-[17px] font-medium'>
-                    {card.title}
-                  </h3>
+                  <CardTitle>{card.title}</CardTitle>
                 }
 
                 {card.description ?
 
-                  <div className="w-[218.4px] h-[54px] flex items-start gap-[40px] p-[10px] bg-[#F7F7F8] dark:bg-[#292B32]">
-                    <p className="text-[12px] text-[#525965] dark:text-[#DFDFDF]">
+                  <CardContent>
+                    <CardText>
                       Total Events <br /> <span className="font-bold text-black dark:text-white dark: text-[14px]">{card.description?.events} Events</span>
-                    </p>
-                    <p className="text-[12px] text-[#525965] dark:text-[#DFDFDF]">
+                    </CardText>
+                    <CardText>
                       Sports <br /> <span className="font-bold text-[14px] text-black dark:text-white">{card.description?.sport}</span>
-                    </p>
-                  </div>
+                    </CardText>
+                  </CardContent>
 
                   :
 
-                  <div className="px-2 lg:px-[15px] space-y-3 pt-3">
-                    <h3 className="text-[#222D3A] dark:text-white text-[20px] font-semibold">{card.info?.title}</h3>
-                    <p className="font-normal text-[#525965] dark:text-[#DFDFDF] text-[13px] text-start">
+                  <CardContent intent="adv">
+                    <CardTitle className="font-semibold">{card.info?.title}
+                    </CardTitle>
+                    <CardText className="font-normal text-start">
                       {card.info?.description}
-                    </p>
-                  </div>
+                    </CardText>
+                  </CardContent >
 
                 }
               </Card>
             ))}
-          </div>
+          </CardWrapper >
           <div className="w-full flex justify-center">
             <Button intent="primary" size="small">See More</Button>
           </div>
@@ -168,10 +167,10 @@ export default function Home() {
 
       <section className="w-full min-h-full relative flex items-center justify-center lg:py-5">
 
-        <div className="h-[918px] w-[1240px] space-y-12 bg-gradient-to-b from-[#F9F8FF] to-[#F3F9FF] dark:bg-gradient-to-b dark:from-[#18282A] dark:to-[#221A2C] overflow-hidden">
+        <div className="h-[918px] w-[1240px] space-y-12 bg-gradient-to-b from-[#F9F8FF] to-[#F3F9FF] dark:bg-gradient-to-b dark:from-[#18282A] dark:to-[#221A2C] overflow-hidden relative">
 
           <Button intent="icon" size="right" className="hidden lg:block">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2C9CF0" width="20px" height="20"><path d="M10.8284 12.0007L15.7782 16.9504L14.364 18.3646L8 12.0007L14.364 5.63672L15.7782 7.05093L10.8284 12.0007Z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2C9CF0" width="20" height="20"><path d="M10.8284 12.0007L15.7782 16.9504L14.364 18.3646L8 12.0007L14.364 5.63672L15.7782 7.05093L10.8284 12.0007Z"></path></svg>
           </Button >
 
           <Button intent="icon" size="left" className="hidden lg:block">
@@ -184,10 +183,10 @@ export default function Home() {
             <h3 className="hidden lg:block lg:text-[14px] w-[917px] px-2">Discover extraordinary moments with our Spotlight Collection metatickets—exclusive access to premium events for an unforgettable experience. Grab yours today!</h3>
           </div>
 
-          <div className="flex gap-24 px-10 lg:items-center lg:justify-center lg:gap-10 overflow-scroll scrollbar-hide bg-transparent">
+          <CardWrapper className="gap-24 px-10 lg:items-center lg:justify-center lg:gap-10">
 
             {CollectionCardInfo.map((card, index) => (
-              <Card intent="collection" className='divide-y-2 divide-dashed divide-[#A9ACB2] dark:divide-[#818A97]' key={card.title + index}>
+              <Card intent="collection" key={card.title + index}>
                 <Image
                   width={250}
                   height={400}
@@ -195,30 +194,27 @@ export default function Home() {
                   alt="Picture of the author"
                 />
 
-                <div className='space-y-[20px] flex flex-col items-center'>
-                  <div className="w-[213px] h-[100.66px] flex flex-col items-center justify-between font-normal text-[14px] space-y-[5px] overflow-hidden text-center mt-[20px]">
+                <div className='space-y-[20px] flex flex-col items-center border-t border-dashed border-[#A9ACB2] dark:border-[#818A97]'>
 
-                    <div className="bg-gradient-to-l from-[#E1E6EB] from-5% to-[#EBEFF4] dark:from-[#1D1D28] dark:to-[#1E1E2B]  z-10 rounded-full w-[20px] h-[20px] absolute bottom-[258px] lg:bottom-[195px] left-[-10px]" />
-                    <div className="bg-gradient-to-r from-[#E1E6EB] from-5% to-[#EBEFF4] dark:from-[#1D1D28] dark:to-[#1E1E2B]  z-10 rounded-full w-[20px] h-[20px] absolute bottom-[258px] lg:bottom-[195px] right-[-10px]" />
+                  <CardContent intent="collection">
 
-
-                    <h3 className="text-center text-[17px] font-medium text-black dark:text-white">
+                    <CardTitle className="text-center">
                       {card.title}
-                    </h3>
-                    <p className="">
+                    </CardTitle>
+                    <CardText>
                       {card.date}
-                    </p>
-                    <p className='text-[#525965] dark:text-[#DFDFDF]'>
+                    </CardText>
+                    <CardText>
                       {card.location}
-                    </p>
+                    </CardText>
 
-                  </div>
+                  </CardContent>
 
                   <Button intent={"secondary"} size={"large"}>Take Flight Collection</Button>
                 </div>
               </Card>
             ))}
-          </div>
+          </CardWrapper>
         </div>
 
       </section>

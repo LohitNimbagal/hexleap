@@ -22,8 +22,8 @@ const button = cva("button", {
     size: {
       small: ["text-sm", "py-[10px]", "px-[30px]"],
       large: ["lg:text-base", "py-[10px]", "px-[30px]", "text-sm"],
-      left: ["top-[430px] right-[70px]"],
-      right: ["top-[430px] left-[70px]"]
+      left: ["top-[400px]", "right-[90px]"],
+      right: ["top-[449px]", "left-[90px]"]
     },
   },
   compoundVariants: [
@@ -45,4 +45,4 @@ export const Button: React.FC<ButtonProps> = ({
   intent,
   size,
   ...props
-}) => <button className={button({ intent, size, className })} {...props} />;
+}) => <button className={button({ intent, size, className })} {...props} />
