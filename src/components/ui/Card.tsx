@@ -15,7 +15,7 @@ const card = cva("shadow-2xl bg-[#FFFFFF] dark:bg-[#3B3E47] relative", {
                 "w-[238.53px]",
                 "h-[511px]",
                 "p-[10px]",
-                "ring-1 ring-inset ring-offset-[10px] ring-[#006555]"
+                "ring-1 ring-inset ring-offset-[10px] ring-offset-white dark:ring-offset-[#3B3E47] ring-[#006555]"
             ],
             collection: [
                 "w-[257px]",
