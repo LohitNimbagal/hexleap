@@ -12,18 +12,23 @@ const button = cva("button", {
         "border-transparent",
       ],
       secondary: [
-        "bg-[#1D1D1F]",
+        "bg-black",
         "text-white",
       ],
+      icon: [
+        "border-[#2C9CF0] border-2 py-[12px] px-[6px] absolute"
+      ]
     },
     size: {
       small: ["text-sm", "py-[10px]", "px-[30px]"],
-      large: ["text-base", "py-[10px]", "px-[50px]"],
+      large: ["text-base", "py-[10px]", "px-[30px]"],
+      left: ["top-[430px] right-[70px]"],
+      right: ["top-[430px] left-[70px]"]
     },
   },
   compoundVariants: [
     { intent: "primary", size: "small", class: "capitalize" },
-    { intent: "secondary", size: "large", class: "capitalize" }
+    { intent: "secondary", size: "large", className: "text-[12px]" }
   ],
   defaultVariants: {
     intent: "primary",
